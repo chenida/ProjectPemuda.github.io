@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusMart - Deals Spesial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .deal-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .deal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .flash-sale {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+        }
+        
+        .bundle-deal {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+        }
+        
+        .daily-deal {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .countdown-timer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, #ffd93d 0%, #ff9a3d 100%);
+            color: #2d3436;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+        
+        .price-discounted {
+            color: #e17055;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .sold-progress {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #00b894 0%, #55efc4 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .flash-sale-header {
+            animation: pulse 2s infinite;
+        }
+        
+        .product-image {
+            transition: transform 0.3s ease;
+        }
+        
+        .deal-card:hover .product-image {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                🎯 DEALS SPESIAL NEXUSMART
+            </h1>
+            <p class="text-xl text-white opacity-90 max-w-3xl mx-auto">
+                Dapatkan penawaran terbaik dengan diskon hingga 70%! Buruan sebelum kehabisan!
+            </p>
+        </div>
+
+        <!-- Flash Sale Section -->
+        <div class="mb-12">
+            <div class="flash-sale-header bg-red-500 text-white p-6 rounded-2xl mb-6 flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-bolt text-3xl mr-4"></i>
+                    <div>
+                        <h2 class="text-2xl font-bold">FLASH SALE</h2>
+                        <p class="text-sm opacity-90">Berakhir dalam:</p>
+                    </div>
+                </div>
+                <div class="countdown-timer flex space-x-2">
+                    <span id="hours">12</span>:<span id="minutes">30</span>:<span id="seconds">00</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Flash Sale Product 1 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e91d1f43-f989-4225-9341-a635ac18d4dc.png" alt="Smartphone flagship dengan layar AMOLED 6.7 inci dan kamera 108MP dalam warna midnight black" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/283f1d8e-e31b-41dc-85d1-8c152a687201.png?text=Smartphone+Flagship'">
+                        <div class="absolute top-3 left-3 discount-badge">60% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Smartphone Flagship</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 12.999.000</span>
+                                <div class="price-discounted">Rp 5.199.600</div>
+                            </div>
+                            <span class="text-sm text-green-600 font-semibold">⭐ 4.8</span>
+                        </div>
+                        <div class="sold-progress mb-2">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                        <p class="text-xs text-gray-600">Terjual: 245/300</p>
+                    </div>
+                </div>
+
+                <!-- Flash Sale Product 2 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/22720b52-269d-4cb8-b7c6-1dcd64396e22.png" alt="Laptop gaming premium dengan processor Intel i9 dan graphics card RTX 4080 dalam chassis metalik" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/709a02a0-3ff2-4d16-83ff-d7c65547664c.png?text=Laptop+Gaming'">
+                        <div class="absolute top-3 left-3 discount-badge">55% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Laptop Gaming Pro</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 25.999.000</span>
+                                <div class="price-discounted">Rp 11.699.550</div>
+                            </div>
+                            <span class="text-sm text-green-600 font-semibold">⭐ 4.9</span>
+                        </div>
+                        <div class="sold-progress mb-2">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                        <p class="text-xs text-gray-600">Terjual: 180/300</p>
+                    </div>
+                </div>
+
+                <!-- Flash Sale Product 3 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/100e9098-eace-44a6-add1-9d01b9c47dbc.png" alt="Smart TV 65 inch 4K QLED dengan HDR10+ dan smart features dalam desain bezel-less" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da187a40-a0e9-460e-a5db-201599d39f93.png?text=Smart+TV+4K'">
+                        <div class="absolute top-3 left-3 discount-badge">50% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Smart TV 4K 65"</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 8.999.000</span>
+                                <div class="price-discounted">Rp 4.499.500</div>
+                            </div>
+                            <span class="text-sm text-green-600 font-semibold">⭐ 4.7</span>
+                        </div>
+                        <div class="sold-progress mb-2">
+                            <div class="progress-bar" style="width: 85%"></div>
+                        </div>
+                        <p class="text-xs text-gray-600">Terjual: 255/300</p>
+                    </div>
+                </div>
+
+                <!-- Flash Sale Product 4 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2252441f-5136-4813-a750-8ab60cd876ef.png" alt="Headphone wireless noise-cancelling premium dengan ear cushions kulit dan battery life 30 jam" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c194212c-c463-4e07-8eb9-7f3558c7d6b0.png'">
+                        <div class="absolute top-3 left-3 discount-badge">45% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Headphone Premium</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 3.499.000</span>
+                                <div class="price-discounted">Rp 1.924.450</div>
+                            </div>
+                            <span class="text-sm text-green-600 font-semibold">⭐ 4.8</span>
+                        </div>
+                        <div class="sold-progress mb-2">
+                            <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <p class="text-xs text-gray-600">Terjual: 210/300</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bundle Deals Section -->
+        <div class="mb-12">
+            <div class="bundle-deal p-6 rounded-2xl mb-6">
+                <h2 class="text-2xl font-bold mb-2">🛍️ BUNDLE DEALS</h2>
+                <p class="opacity-90">Dapatkan paket lengkap dengan harga spesial!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Bundle Deal 1 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6b17d1b0-edf4-48da-b994-0c35ccf8b07a.png" alt="Bundle perangkat smart home termasuk smart speaker, smart lights, dan smart hub dalam setup modern" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c28e56b9-6406-440e-8c0e-e5271d5a071c.png?text=Smart+Home+Bundle'">
+                        <div class="absolute top-3 left-3 discount-badge">BUNDLE 40% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Smart Home Starter Pack</h3>
+                        <p class="text-sm text-gray-600 mb-3">Termasuk: Smart Speaker + 4 Smart Lights + Hub</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="price-original">Rp 4.999.000</span>
+                                <div class="price-discounted">Rp 2.999.400</div>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition-colors">
+                                Beli Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bundle Deal 2 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d53bf24a-5b2b-4307-8143-5899264615eb.png" alt="Bundle gaming setup termasuk monitor curved, mechanical keyboard, gaming mouse, dan headset" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e0074b10-6ffd-4d74-b9c7-e46c7811cbb7.png'">
+                        <div class="absolute top-3 left-3 discount-badge">BUNDLE 35% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Ultimate Gaming Setup</h3>
+                        <p class="text-sm text-gray-600 mb-3">Monitor 27" + Keyboard + Mouse + Headset</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="price-original">Rp 7.499.000</span>
+                                <div class="price-discounted">Rp 4.874.350</div>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition-colors">
+                                Beli Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Deals Section -->
+        <div>
+            <div class="daily-deal p-6 rounded-2xl mb-6">
+                <h2 class="text-2xl font-bold mb-2">📅 DEAL HARI INI</h2>
+                <p class="opacity-90">Penawaran spesial yang berubah setiap hari!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Daily Deal 1 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bc1d5ac2-b10a-4b58-819a-bd9cf4418527.png" alt="Smartwatch fitness tracker dengan heart rate monitor dan GPS built-in dalam warna sporty black" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6dfa8356-d585-4256-bdc9-e4cb28201861.png'">
+                        <div class="absolute top-3 left-3 discount-badge">30% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Smartwatch Fitness</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 1.999.000</span>
+                                <div class="price-discounted">Rp 1.399.300</div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full transition-colors">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daily Deal 2 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Wireless charging station untuk multiple devices dengan fast charging technology" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7c26a4fc-d0d5-4fc1-9940-fb18a4058823.png'">
+                        <div class="absolute top-3 left-3 discount-badge">25% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Wireless Charger 3-in-1</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 899.000</span>
+                                <div class="price-discounted">Rp 674.250</div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full transition-colors">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daily Deal 3 -->
+                <div class="deal-card group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Portable Bluetooth speaker dengan waterproof design dan 360 degree sound dalam warna navy blue" class="w-full h-48 object-cover product-image" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/74ce03d1-10c3-449c-ba03-8878ec49a342.png'">
+                        <div class="absolute top-3 left-3 discount-badge">20% OFF</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-lg mb-2">Bluetooth Speaker</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="price-original">Rp 1.299.000</span>
+                                <div class="price-discounted">Rp 1.039.200</div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full transition-colors">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center mt-12">
+            <h2 class="text-3xl font-bold text-white mb-4">Tunggu Apa Lagi?</h2>
+            <p class="text-white opacity-90 mb-6">Jangan lewatkan penawaran spesial ini. Buruan sebelum kehabisan!</p>
+            <button class="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-2xl">
+                Lihat Semua Deals 🚀
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date();
+            target.setHours(23, 59, 59, 999);
+            
+            const diff = target - now;
+            
+            if (diff <= 0) {
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Add to cart animation
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (e.target.textContent.includes('Tambah') || e.target.textContent.includes('Beli')) {
+                    e.target.innerHTML = '✓ Ditambahkan';
+                    e.target.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        e.target.innerHTML = e.target.textContent.includes('Tambah') ? 
+                            'Tambah ke Keranjang' : 'Beli Sekarang';
+                        e.target.classList.remove('bg-green-600');
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
